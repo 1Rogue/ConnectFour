@@ -26,6 +26,7 @@ package com.rogue.connectfour;
 public class Connect4 {
     
     private static ConnectFour instance;
+    private static int DEFAULT_ROWS, DEFAULT_COLUMNS = 4;
     
     /**
      * Initial method for program start.
@@ -33,10 +34,39 @@ public class Connect4 {
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param args Command line arguments (Ignored). 
+     * @param args Command line arguments. Accepts two or four arguments:
+     *             X_Player_Type O_Player_Type Number_Rows Number_Columns
+     *             Player types are: Random, Bad, Good, and Human.
      */
     public static void main (String[] args) {
-        instance = new ConnectFour();
+        switch (args.length) {
+            case 4:
+                if (validateArgument(args[0]) && validateArgument(args[1])) {
+                    instance = new ConnectFour(args[0],
+                                               args[1],
+                                               Integer.parseInt(args[2]),
+                                               Integer.parseInt(args[3]));
+                } else {
+                    System.err.println("Invalid player type supplied");
+                    System.exit(1);
+                }
+                break;
+            case 2:
+                if (validateArgument(args[0]) && validateArgument(args[1])) {
+                    instance = new ConnectFour(args[0],
+                                               args[1],
+                                               DEFAULT_ROWS,
+                                               DEFAULT_COLUMNS);
+                } else {
+                    System.err.println("Invalid player type supplied");
+                    System.exit(1);
+                }
+                break;
+            default:
+                System.err.println("Error: Invalid command line arguemnts.");
+                System.exit(1);
+                break;
+        }
     }
     
     /**
@@ -49,6 +79,23 @@ public class Connect4 {
      */
     public static ConnectFour getInstance() {
         return instance;
+    }
+    
+    /**
+     * Validates if an argument is a valid option.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param argument The argument to check
+     * @return True if valid argument, false otherwise.
+     */
+    private static boolean validateArgument(String argument) {
+        argument = argument.toLowerCase();
+        return ("random".equals(argument)
+                || "bad".equals(argument)
+                || "good".equals(argument)
+                || "human".equals(argument));
     }
 
 }

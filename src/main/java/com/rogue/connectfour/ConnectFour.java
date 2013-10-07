@@ -28,6 +28,10 @@ import com.rogue.connectfour.logger.GameLogger;
 public class ConnectFour {
     
     private final GameLogger logger;
+    private final String xType;
+    private final String oType;
+    private final int rows;
+    private final int columns;
     //Global extension variables
     
     /**
@@ -36,8 +40,17 @@ public class ConnectFour {
      * 
      * @since 1.0.0
      * @version 1.0.0
+     * 
+     * @param xType Player type for X player
+     * @param oType Player type for O player
+     * @param rows Number of rows to play the game with
+     * @param columns Number of columns to play the game with
      */
-    public ConnectFour() {
+    public ConnectFour(String xType, String oType, int rows, int columns) {
+        this.xType = xType;
+        this.oType = oType;
+        this.rows = rows;
+        this.columns = columns;
         this.logger = new GameLogger(this);
         //Init global extension variables
     }
