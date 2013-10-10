@@ -16,6 +16,7 @@
  */
 package com.rogue.connectfour;
 
+import com.rogue.connectfour.board.Board;
 import com.rogue.connectfour.logger.GameLogger;
 
 /**
@@ -28,10 +29,7 @@ import com.rogue.connectfour.logger.GameLogger;
 public class ConnectFour {
     
     private final GameLogger logger;
-    private final String xType;
-    private final String oType;
-    private final int rows;
-    private final int columns;
+    private final Board board;
     //Global extension variables
     
     /**
@@ -47,11 +45,8 @@ public class ConnectFour {
      * @param columns Number of columns to play the game with
      */
     public ConnectFour(String xType, String oType, int rows, int columns) {
-        this.xType = xType;
-        this.oType = oType;
-        this.rows = rows;
-        this.columns = columns;
         this.logger = new GameLogger(this);
+        this.board = new Board(this, rows, columns);
         //Init global extension variables
     }
     

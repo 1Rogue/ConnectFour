@@ -14,31 +14,43 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.rogue.connectfour.logger;
+package com.rogue.connectfour.board;
 
 import com.rogue.connectfour.ConnectFour;
 
 /**
- * Logging class utility for printing out turns within the game.
  *
- * @since 1.0.0
- * @author Spencer Alderman
- * @version 1.0.0
+ * @since 
+ * @author 1Rogue
+ * @version 
  */
-public class GameLogger {
+public class Board {
     
-    private final ConnectFour project;
+    private ConnectFour project;
+    private Node<Peice>[][] grid;
+    
+    public Board(ConnectFour project, int rows, int columns) {
+        this.project = project;
+        this.grid = new Node[rows][columns];
+    }
     
     /**
-     * Constructor for Logger.
+     * Plays a peice on the board
      * 
-     * @since 1.0.0
-     * @version 1.0.0
-     * 
-     * @param project The main project instance
+     * @param type The type of peice to play
+     * @param column The column to play in1
      */
-    public GameLogger(ConnectFour project) {
-        this.project = project;
+    public void play(Peice type, int column) {
+        
+    }
+    
+    /**
+     * Converts an array-based y to space-oriented y
+     * @param rawY The y argument
+     * @return The y relevant to the array
+     */
+    private int toY(int rawY) {
+        return 0;
     }
 
 }
