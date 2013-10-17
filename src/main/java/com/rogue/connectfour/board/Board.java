@@ -32,6 +32,16 @@ public class Board {
     public Board(ConnectFour project, int rows, int columns) {
         this.project = project;
         this.grid = new Node[rows][columns];
+        for (int i = 0; i < grid.length; i++) {
+            for (int w = 0; w < grid[i].length; w++) {
+                grid[i][w] = new Node<Peice>(Peice.NULL);
+            }
+        }
+        for (int i = 0; i < grid.length; i++) {
+            for (int w = 0; w < grid[i].length; w++) {
+                grid[i][w].setNeighbors(this);
+            }
+        }
     }
     
     /**
@@ -51,6 +61,10 @@ public class Board {
      */
     private int toY(int rawY) {
         return 0;
+    }
+    
+    public Node<Peice>[][] getGrid() {
+        return this.grid;
     }
 
 }

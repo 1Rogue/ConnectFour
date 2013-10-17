@@ -21,43 +21,56 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
- * @since 
- * @author 1Rogue
- * @version 
+ * @since @author 1Rogue
+ * @version
  */
 public class Node<E> {
-    
+
     private final E data;
     private final Map<Direction, Node<E>> neighbors;
-    
+
     public Node(E data) {
         this.data = data;
         this.neighbors = new ConcurrentHashMap();
-        for (Direction d : Direction.values()) {
-            this.neighbors.put(d, null);
-        }
     }
     
+    public void setNeighbors(Board board) {
+        final Node<E>[][] grid;
+        synchronized (grid = (Node<E>[][])board.getGrid()) {
+            for (Direction d : Direction.values()) {
+                try {
+                    this.neighbors.put(d, grid[d.getInstructions()[0]][d.getInstructions()[1]]);
+                } catch (ArrayIndexOutOfBoundsException ex) {
+                    // Do nothing, it's out of bounds
+                }
+            }
+        }
+    }
+
+    public E getData() {
+        return this.data;
+    }
+
     public Map<Direction, Node<E>> getNeighbors() {
         return this.neighbors;
     }
-    
+
     public void setNeighbor(Direction direction, Node<E> neighbor) {
         this.neighbors.put(direction, neighbor);
     }
-    
+
     public boolean hasNeighbor(Direction direction) {
         return this.neighbors.get(direction) != null;
     }
-    
+
     public boolean hasNeighbor(Direction direction, Node<E> node) {
         return node.equals(this.neighbors.get(direction));
     }
-    
+
     public boolean equals(Node<E> node) {
         return this.data == node.data;
     }
-    
+
     public int search(Direction d) {
         Node<E> neigh = this.neighbors.get(d);
         if (neigh != null && neigh.equals(this)) {
@@ -65,5 +78,4 @@ public class Node<E> {
         }
         return 0;
     }
-
 }
