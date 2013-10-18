@@ -70,8 +70,6 @@ public class Game {
                     valid = true;
                 } catch (FullColumnException ex) {
                     if (current instanceof Human) {
-                        Human h = (Human)current;
-                        h.setRepeat(true);
                         System.out.println("invalid column: " + i);
                     }
                     continue getInput;
