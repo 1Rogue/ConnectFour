@@ -59,7 +59,7 @@ public class Human implements Player {
     @Override
     public int nextMove() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Player " + "" + ": Enter the column to drop your piece (-1 to quit): ");
+        System.out.print("Player " + this.ident.toString() + ": Enter the column to drop your piece (-1 to quit): ");
         return scan.nextInt();
     }
     

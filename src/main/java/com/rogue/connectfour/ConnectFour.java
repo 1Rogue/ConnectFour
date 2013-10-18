@@ -67,7 +67,7 @@ public class ConnectFour {
         } else {
             System.out.println(c + " won " + this.board.getWinningMove());
         }
-        this.printBoard();
+        this.exit(0);
     }
     
     /**
@@ -92,6 +92,19 @@ public class ConnectFour {
      */
     public PlayerManager getPlayerManager() {
         return this.manager;
+    }
+    
+    /**
+     * Exists the project with the corresponding exit code
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param code The exit code to use
+     */
+    public void exit(int code) {
+        this.printBoard();
+        System.exit(code);
     }
     
     /**

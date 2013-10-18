@@ -71,7 +71,7 @@ public class Game {
                 int i = current.nextMove(); // Get the next move
                 if (i == -1) {
                     System.out.println(current.getIdent().toString() + " quits the game");
-                    System.exit(0);
+                    this.project.exit(0);
                 }
                 boolean win;
                 try {
