@@ -30,6 +30,7 @@ public class Bad implements Player {
     
     private final ConnectFour project;
     private Piece ident = Piece.NULL;
+    private int counter = 0;
     
     public Bad(ConnectFour project) {
         this.project = project;
@@ -37,7 +38,10 @@ public class Bad implements Player {
 
     @Override
     public int nextMove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.project.getBoard().getFullColumns().contains(this.counter)) {
+            this.counter++;
+        }
+        return this.counter;
     }
     
     @Override
