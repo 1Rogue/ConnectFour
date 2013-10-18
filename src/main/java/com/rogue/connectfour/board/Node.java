@@ -179,9 +179,9 @@ public class Node<E> {
      */
     public int search(Direction d) {
         Node<E> neigh = this.neighbors.get(d);
-        if (neigh != null && this.hasNeighbor(d)) {
+        if (neigh != null && this.hasNeighbor(d) && this.equals(neigh)) {
             return neigh.search(d) + 1;
         }
-        return 0;
+        return 1;
     }
 }

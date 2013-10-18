@@ -55,6 +55,7 @@ public class Game {
             Player current = pm.getPlayer();
             System.out.println(current.getType() + " player " + current.getIdent().toString() + " moving...");
             if (this.project.getBoard().play(current.getIdent(), current.nextMove())) {
+                this.printBoard(this.project.getBoard());
                 return current.getIdent().toString().toCharArray()[0];
             }
             this.turn--;

@@ -17,7 +17,6 @@
 package com.rogue.connectfour.board;
 
 import com.rogue.connectfour.ConnectFour;
-import java.util.Map;
 
 /**
  *
@@ -28,6 +27,8 @@ public class Board {
 
     private ConnectFour project;
     private Node<Piece>[][] grid;
+    public final int maxHeight;
+    public final int maxWidth;
 
     /**
      * Constructor for Board. Initializes the grid and then sets the neighbors
@@ -42,6 +43,8 @@ public class Board {
      */
     public Board(ConnectFour project, int rows, int columns) {
         this.project = project;
+        this.maxHeight = rows - 1;
+        this.maxWidth = columns - 1;
         this.grid = new Node[rows][columns];
         for (int i = 0; i < grid.length; i++) {
             for (int w = 0; w < grid[i].length; w++) {

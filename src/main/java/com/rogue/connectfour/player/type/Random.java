@@ -37,7 +37,8 @@ public class Random implements Player {
 
     @Override
     public int nextMove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        java.util.Random rand = new java.util.Random();
+        return rand.nextInt(this.project.getBoard().maxWidth);
     }
     
     @Override
