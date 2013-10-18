@@ -26,7 +26,7 @@ package com.rogue.connectfour;
 public class Connect4 {
 
     private static ConnectFour instance;
-    private static int DEFAULT_ROWS, DEFAULT_COLUMNS = 4;
+    private static int DEFAULT_ROWS = 4, DEFAULT_COLUMNS = 4;
 
     /**
      * Initial method for program start.
