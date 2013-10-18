@@ -20,6 +20,7 @@ import com.rogue.connectfour.Connect4;
 import com.rogue.connectfour.ConnectFour;
 import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.player.Player;
+import java.util.Scanner;
 
 /**
  * Human AI for {@link ConnectFour}. Moves are determined by a human player.
@@ -30,6 +31,7 @@ import com.rogue.connectfour.player.Player;
  */
 public class Human implements Player {
     
+    private static Scanner scan = new Scanner(System.in);
     private final ConnectFour project;
     private final Piece ident;
     
@@ -59,7 +61,7 @@ public class Human implements Player {
     @Override
     public int nextMove() {
         System.out.print("Player " + this.ident.toString() + ": Enter the column to drop your piece (-1 to quit): ");
-        return Connect4.scan.nextInt();
+        return scan.nextInt();
     }
     
     /**

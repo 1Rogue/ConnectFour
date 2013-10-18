@@ -16,8 +16,6 @@
  */
 package com.rogue.connectfour;
 
-import java.util.Scanner;
-
 /**
  * Initial Starting class for ConnectFour instance
  *
@@ -29,7 +27,6 @@ public class Connect4 {
 
     private static ConnectFour instance;
     private static int DEFAULT_ROWS = 4, DEFAULT_COLUMNS = 4;
-    public static Scanner scan = new Scanner(System.in);
 
     /**
      * Initial method for program start.
