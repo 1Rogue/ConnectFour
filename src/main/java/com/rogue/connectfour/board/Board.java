@@ -17,25 +17,25 @@
 package com.rogue.connectfour.board;
 
 import com.rogue.connectfour.ConnectFour;
+import java.util.Map;
 
 /**
  *
- * @since 
- * @author 1Rogue
- * @version 
+ * @since @author 1Rogue
+ * @version
  */
 public class Board {
-    
+
     private ConnectFour project;
     private Node<Piece>[][] grid;
-    
+
     /**
      * Constructor for Board. Initializes the grid and then sets the neighbors
      * for the nodes
-     * 
+     *
      * @since 1.0.0
      * @version 1.0.0
-     * 
+     *
      * @param project The main project instance
      * @param rows The number of rows
      * @param columns The number of columns
@@ -54,35 +54,42 @@ public class Board {
             }
         }
     }
-    
+
     /**
      * Plays a piece on the board
-     * 
+     *
      * @since 1.0.0
      * @version 1.0.0
-     * 
+     *
      * @param type The type of piece to play
      * @param column The column to play in1
+     *
+     * @return True if play was a game-winning move
      */
-    public void play(Piece type, int column) {
-        for (int i = grid.length - 1; i >= 0; i--) {
-            if (!grid[i][column].getData().equals(Piece.NULL)) {
-                continue;
+    public boolean play(Piece type, int column) {
+        for (int i = this.grid.length - 1; i >= 0; i--) {
+            if (this.grid[i][column].getData().equals(Piece.NULL)) {
+                this.grid[i][column].setData(type);
+                for (Direction d : Direction.values()) {
+                    if (this.grid[i][column].search(d) >= 4) {
+                        return true;
+                    }
+                }
+                break;
             }
-            grid[i][column].setData(type);
         }
+        return false;
     }
-    
+
     /**
      * Returns the grid. Should be used in a synchronized block for safety.
-     * 
+     *
      * @since 1.0.0
      * @version 1.0.0
-     * 
+     *
      * @return The board grid
      */
     public synchronized Node<Piece>[][] getGrid() {
         return this.grid;
     }
-
 }

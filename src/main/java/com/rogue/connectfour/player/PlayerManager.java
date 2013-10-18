@@ -17,6 +17,7 @@
 package com.rogue.connectfour.player;
 
 import com.rogue.connectfour.ConnectFour;
+import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.player.type.*;
 
 /**
@@ -28,24 +29,36 @@ import com.rogue.connectfour.player.type.*;
 public class PlayerManager {
     
     private final ConnectFour project;
+    private boolean secondTurn = true;
     private final Player one;
     private final Player two;
     
     public PlayerManager(ConnectFour project, String oneType, String twoType) {
         this.project = project;
         this.one = this.getPlayerFromType(oneType);
+        this.one.setIdent(Piece.X);
         this.two = this.getPlayerFromType(twoType);
+        this.two.setIdent(Piece.O);
     }
     
     private Player getPlayerFromType(String type) {
         if (type.equalsIgnoreCase("human")) {
-            return new Human();
+            return new Human(this.project);
         } else if (type.equalsIgnoreCase("random")) {
-            return new Random();
+            return new Random(this.project);
         } else if (type.equalsIgnoreCase("bad")) {
-            return new Bad();
+            return new Bad(this.project);
         }
-        return new Good();
+        return new Good(this.project);
+    }
+    
+    public Player getPlayer() {
+        this.secondTurn = !this.secondTurn;
+        if (!this.secondTurn) {
+            return this.one;
+        } else {
+            return this.two;
+        }
     }
 
 }

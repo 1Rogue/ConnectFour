@@ -17,7 +17,9 @@
 package com.rogue.connectfour;
 
 import com.rogue.connectfour.board.Board;
+import com.rogue.connectfour.game.Game;
 import com.rogue.connectfour.logger.GameLogger;
+import com.rogue.connectfour.player.PlayerManager;
 
 /**
  * Main class for game
@@ -30,7 +32,8 @@ public class ConnectFour {
     
     private final GameLogger logger;
     private final Board board;
-    //Global extension variables
+    private final Game game;
+    private final PlayerManager manager;
     
     /**
      * Game constructor. Initializes variables to be used from a global
@@ -47,7 +50,9 @@ public class ConnectFour {
     public ConnectFour(String xType, String oType, int rows, int columns) {
         this.logger = new GameLogger(this);
         this.board = new Board(this, rows, columns);
-        //Init global extension variables
+        this.manager = new PlayerManager(this, xType, oType);
+        this.game = new Game(this, rows * columns);
+        System.out.println("Winner: " + this.game.start());
     }
     
     /**
@@ -56,10 +61,34 @@ public class ConnectFour {
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @return The game's logger utility
+     * @return The {@link GameLogger} module
      */
     public GameLogger getLogger() {
         return this.logger;
+    }
+    
+    /**
+     * Returns the board module for the project
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Board} module
+     */
+    public Board getBoard() {
+        return this.board;
+    }
+    
+    /**
+     * Gets the player manager for the project
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link PlayerManager} module
+     */
+    public PlayerManager getPlayerManager() {
+        return this.manager;
     }
     
 }

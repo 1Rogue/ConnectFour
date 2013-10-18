@@ -16,6 +16,8 @@
  */
 package com.rogue.connectfour.player;
 
+import com.rogue.connectfour.board.Piece;
+
 /**
  *
  * @since 
@@ -25,5 +27,8 @@ package com.rogue.connectfour.player;
 public interface Player {
     
     public int nextMove();
+    public String getType();
+    public void setIdent(Piece ident);
+    public Piece getIdent();
 
 }

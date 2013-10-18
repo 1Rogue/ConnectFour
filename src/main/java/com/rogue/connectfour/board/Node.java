@@ -100,6 +100,19 @@ public class Node<E> {
     public Map<Direction, Node<E>> getNeighbors() {
         return this.neighbors;
     }
+    
+    /**
+     * Gets a particular neighbor from a direction
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param d The direction to look in
+     * @return The neighbor in this location
+     */
+    public synchronized Node<E> getNeighbor(Direction d) {
+        return this.neighbors.get(d);
+    }
 
     /**
      * Sets a neighbor in a relevant direction
@@ -166,7 +179,7 @@ public class Node<E> {
      */
     public int search(Direction d) {
         Node<E> neigh = this.neighbors.get(d);
-        if (neigh != null && neigh.equals(this)) {
+        if (neigh != null && this.hasNeighbor(d)) {
             return neigh.search(d) + 1;
         }
         return 0;

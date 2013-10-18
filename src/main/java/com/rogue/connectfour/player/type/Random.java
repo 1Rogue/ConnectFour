@@ -16,6 +16,8 @@
  */
 package com.rogue.connectfour.player.type;
 
+import com.rogue.connectfour.ConnectFour;
+import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.player.Player;
 
 /**
@@ -25,13 +27,32 @@ import com.rogue.connectfour.player.Player;
  * @version 
  */
 public class Random implements Player {
+    
+    private final ConnectFour project;
+    private Piece ident = Piece.NULL;
+    
+    public Random(ConnectFour project) {
+        this.project = project;
+    }
 
+    @Override
     public int nextMove() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
     public String getType() {
         return "random";
+    }
+    
+    @Override
+    public void setIdent(Piece ident) {
+        this.ident = ident;
+    }
+    
+    @Override
+    public Piece getIdent() {
+        return this.ident;
     }
 
 }

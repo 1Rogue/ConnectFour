@@ -51,16 +51,6 @@ public enum Direction {
         @Override public int[] getInstructions() { return new int[]{0, -1}; }
     },
     /**
-     * The O in respect to X. In this case, both are in the same location.
-     * <br>
-     * <br>| | | |
-     * <br>| |X| |
-     * <br>| | | |
-     */
-    CENTER(5) {
-        @Override public int[] getInstructions() { return new int[]{0, 0}; }
-    },
-    /**
      * The O in respect to X
      * <br>
      * <br>| | | |

@@ -10,9 +10,9 @@ package com.rogue.connectfour.board;
  */
 public enum Piece {
     
+    NULL(" "),
     X("X"),
-    O("O"),
-    NULL(" ");
+    O("O");
     private final String name;
     
     private Piece(String name) {

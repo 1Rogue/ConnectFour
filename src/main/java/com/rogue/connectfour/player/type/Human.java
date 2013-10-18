@@ -16,7 +16,10 @@
  */
 package com.rogue.connectfour.player.type;
 
+import com.rogue.connectfour.ConnectFour;
+import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.player.Player;
+import java.util.Scanner;
 
 /**
  *
@@ -25,13 +28,34 @@ import com.rogue.connectfour.player.Player;
  * @version 
  */
 public class Human implements Player {
+    
+    private final ConnectFour project;
+    private Piece ident = Piece.NULL;
+    
+    public Human(ConnectFour project) {
+        this.project = project;
+    }
 
+    @Override
     public int nextMove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Player " + "" + ": Enter the column to drop your piece (-1 to quit): ");
+        return scan.nextInt();
     }
     
+    @Override
     public String getType() {
         return "human";
+    }
+    
+    @Override
+    public void setIdent(Piece ident) {
+        this.ident = ident;
+    }
+    
+    @Override
+    public Piece getIdent() {
+        return this.ident;
     }
 
 }
