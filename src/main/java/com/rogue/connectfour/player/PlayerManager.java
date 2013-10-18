@@ -35,12 +35,12 @@ public class PlayerManager {
     private final Player two;
     
     /**
-     * PlayerManager Constructor. Creates two new players for the game.
+     * {@link PlayerManager} Constructor. Creates two new players for the game.
      * 
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param project The main project instance
+     * @param project The {@link ConnectFour} instance
      * @param oneType The type to use for player one
      * @param twoType The type to use for player two
      */
@@ -80,7 +80,7 @@ public class PlayerManager {
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @return The player for the appropriate turn
+     * @return The {@link Player} for the appropriate turn
      */
     public Player getPlayer() {
         this.secondTurn = !this.secondTurn;

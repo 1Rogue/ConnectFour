@@ -95,7 +95,7 @@ public class ConnectFour {
     }
     
     /**
-     * Prints the layout of the provided board
+     * Prints the layout of the provided {@link Board}
      * 
      * @since 1.0.0
      * @version 1.0.0
