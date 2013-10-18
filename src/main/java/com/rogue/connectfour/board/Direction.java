@@ -159,4 +159,35 @@ public enum Direction {
         return this.dir == dir.dir;
     }
     
+    /**
+     * Sends the opposite value of this {@link Direction}
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The opposite {@link Direction} value
+     */
+    public Direction inverse() {
+        switch (this.dir) {
+            case 1:
+                return Direction.BOTTOMRIGHT;
+            case 2:
+                return Direction.BOTTOM;
+            case 3:
+                return Direction.BOTTOMLEFT;
+            case 4:
+                return Direction.RIGHT;
+            case 6:
+                return Direction.LEFT;
+            case 7:
+                return Direction.TOPRIGHT;
+            case 8:
+                return Direction.TOP;
+            case 9:
+                return Direction.TOPLEFT;
+            default:
+                return Direction.TOPLEFT;
+        }
+    }
+    
 }

@@ -35,8 +35,8 @@ public class Connect4 {
      * @version 1.0.0
      *
      * @param args Command line arguments. Accepts two or four arguments:
-     * X_Player_Type O_Player_Type Number_Rows Number_Columns Player types are:
-     * Random, Bad, Good, and Human.
+     *             X_Player_Type O_Player_Type Number_Rows Number_Columns
+     *             Player types are: Random, Bad, Good, and Human.
      */
     public static void main(String[] args) {
         switch (args.length) {

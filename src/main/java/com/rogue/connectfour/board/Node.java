@@ -29,6 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Node<E> {
 
     private E data;
+    private final int column;
     private final Map<Direction, Node<E>> neighbors;
 
     /**
@@ -38,9 +39,11 @@ public class Node<E> {
      * @version 1.0.0
      * 
      * @param data The data to set
+     * @param column The column this {@link Node} resides in
      */
-    public Node(E data) {
+    public Node(E data, int column) {
         this.data = data;
+        this.column = column;
         this.neighbors = new ConcurrentHashMap();
     }
     
@@ -185,5 +188,17 @@ public class Node<E> {
             return neigh.search(d) + 1;
         }
         return 1;
+    }
+    
+    /**
+     * Returns the column in which this {@link Node} resides
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The column this {@link Node} resides in
+     */
+    public int getColumn() {
+        return this.column;
     }
 }

@@ -74,4 +74,23 @@ public enum Piece {
         return this.name.equals(type.name);
     }
     
+    /**
+     * Sends the opposite value of this {@link Piece}
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The opposite {@link Piece} value
+     */
+    public Piece inverse() {
+        if (this.name.equals("X")) {
+            return Piece.O;
+        } else if (this.name.equals("O")) {
+            return Piece.X;
+        } else {
+            return Piece.NULL;
+        }
+    }
+        
+    
 }

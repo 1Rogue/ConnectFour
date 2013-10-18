@@ -75,6 +75,9 @@ public class Game {
                 }
                 boolean win;
                 try {
+                    if (i < 0 || i > this.project.getBoard().maxWidth) {
+                        throw new FullColumnException();
+                    }
                     win = this.project.getBoard().play(current.getIdent(), i);
                     valid = true; // If no FCE, then the move was valid
                 } catch (FullColumnException ex) {

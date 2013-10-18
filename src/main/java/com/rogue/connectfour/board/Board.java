@@ -58,7 +58,7 @@ public class Board {
         this.grid = new Node[rows][columns];
         for (int i = 0; i < grid.length; i++) {
             for (int w = 0; w < grid[i].length; w++) {
-                grid[i][w] = new Node<Piece>(Piece.NULL);
+                grid[i][w] = new Node<Piece>(Piece.NULL, w);
             }
         }
         for (int i = 0; i < grid.length; i++) {
@@ -137,9 +137,11 @@ public class Board {
                 if (this.grid[i][w].getData().equals(type)) {
                     dirLoop:
                     for (Direction d : Direction.values()) {
-                        if (this.grid[i][w].getNeighbor(d).getData().equals(Piece.NULL)) {
-                            nodes.add(this.grid[i][w]);
-                            break dirLoop;
+                        if (this.grid[i][w].getNeighbor(d) != null) {
+                            if (this.grid[i][w].getNeighbor(d).getData().equals(Piece.NULL)) {
+                                nodes.add(this.grid[i][w]);
+                                break dirLoop;
+                            }
                         }
                     }
                 }
