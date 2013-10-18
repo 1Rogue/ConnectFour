@@ -53,8 +53,8 @@ public class Board {
      */
     public Board(ConnectFour project, int rows, int columns) {
         this.project = project;
-        this.maxHeight = rows - 1;
-        this.maxWidth = columns - 1;
+        this.maxHeight = rows;
+        this.maxWidth = columns;
         this.grid = new Node[rows][columns];
         for (int i = 0; i < grid.length; i++) {
             for (int w = 0; w < grid[i].length; w++) {
