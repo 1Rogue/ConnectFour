@@ -31,6 +31,7 @@ public class Human implements Player {
     
     private final ConnectFour project;
     private Piece ident = Piece.NULL;
+    private boolean repeat = false;
     
     public Human(ConnectFour project) {
         this.project = project;
@@ -39,7 +40,9 @@ public class Human implements Player {
     @Override
     public int nextMove() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Player " + "" + ": Enter the column to drop your piece (-1 to quit): ");
+        if (!repeat) {
+            System.out.println("Player " + "" + ": Enter the column to drop your piece (-1 to quit): ");
+        }
         return scan.nextInt();
     }
     
@@ -56,6 +59,10 @@ public class Human implements Player {
     @Override
     public Piece getIdent() {
         return this.ident;
+    }
+    
+    public void setRepeat(boolean repeat) {
+        this.repeat = repeat;
     }
 
 }

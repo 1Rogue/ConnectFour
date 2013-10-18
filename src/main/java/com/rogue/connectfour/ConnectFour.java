@@ -17,8 +17,9 @@
 package com.rogue.connectfour;
 
 import com.rogue.connectfour.board.Board;
+import com.rogue.connectfour.board.Node;
+import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.game.Game;
-import com.rogue.connectfour.logger.GameLogger;
 import com.rogue.connectfour.player.PlayerManager;
 
 /**
@@ -30,10 +31,9 @@ import com.rogue.connectfour.player.PlayerManager;
  */
 public class ConnectFour {
     
-    private final GameLogger logger;
     private final Board board;
-    private final Game game;
     private final PlayerManager manager;
+    private final Game game;
     
     /**
      * Game constructor. Initializes variables to be used from a global
@@ -48,28 +48,26 @@ public class ConnectFour {
      * @param columns Number of columns to play the game with
      */
     public ConnectFour(String xType, String oType, int rows, int columns) {
-        this.logger = new GameLogger(this);
         this.board = new Board(this, rows, columns);
         this.manager = new PlayerManager(this, xType, oType);
         this.game = new Game(this, rows * columns);
+        this.init();
+    }
+    
+    /**
+     * Private void to avoid calls within the main class constructor
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     */
+    private void init() {
         char c = this.game.start();
         if (c == ' ') {
             System.out.println("Its a tie, no one wins");
         } else {
             System.out.println(c + " won " + this.board.getWinningMove());
         }
-    }
-    
-    /**
-     * Returns the logger utility for the game.
-     * 
-     * @since 1.0.0
-     * @version 1.0.0
-     * 
-     * @return The {@link GameLogger} module
-     */
-    public GameLogger getLogger() {
-        return this.logger;
+        this.printBoard();
     }
     
     /**
@@ -94,6 +92,33 @@ public class ConnectFour {
      */
     public PlayerManager getPlayerManager() {
         return this.manager;
+    }
+    
+    /**
+     * Prints the layout of the provided board
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     */
+    public synchronized void printBoard() {
+        System.out.println();
+        final Node<Piece>[][] grid;
+        synchronized (grid = this.board.getGrid()) {
+            StringBuilder back = new StringBuilder();
+            for (int i = 0; i < grid.length; i++) {
+                StringBuilder row = new StringBuilder("|");
+                for (int w = 0; w < grid[i].length; w++) {
+                    row.append(grid[i][w].getData().toString()).append("|");
+                }
+                back.append(row).append('\n');
+            }
+            StringBuilder bottom = new StringBuilder("+");
+            for (int i = 0; i < grid[0].length; i++) {
+                bottom.append("-+");
+            }
+            System.out.println(back.append(bottom.toString()).toString());
+        }
+        System.out.println();
     }
     
 }

@@ -14,31 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.rogue.connectfour.logger;
-
-import com.rogue.connectfour.ConnectFour;
+package com.rogue.connectfour.board;
 
 /**
- * Logging class utility for printing out turns within the game.
  *
  * @since 1.0.0
- * @author Spencer Alderman
+ * @author 1Rogue
  * @version 1.0.0
  */
-public class GameLogger {
+public class FullColumnException extends Exception {
     
-    private final ConnectFour project;
-    
-    /**
-     * Constructor for Logger.
-     * 
-     * @since 1.0.0
-     * @version 1.0.0
-     * 
-     * @param project The main project instance
-     */
-    public GameLogger(ConnectFour project) {
-        this.project = project;
+    public FullColumnException() {
+        super();
     }
-
 }

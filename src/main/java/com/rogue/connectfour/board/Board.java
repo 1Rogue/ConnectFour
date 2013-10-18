@@ -21,8 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @since @author 1Rogue
+ * 
+ * @since
+ * @author 1Rogue
  * @version
  */
 public class Board {
@@ -31,6 +32,7 @@ public class Board {
     private Node<Piece>[][] grid;
     public final int maxHeight;
     public final int maxWidth;
+    private final List<Integer> fullCols = new ArrayList();
     //Winning variables, used on win only.
     private Direction winningDir = Direction.TOP;
     private int winningRow = 0;
@@ -72,12 +74,16 @@ public class Board {
      *
      * @param type The type of piece to play
      * @param column The column to play in1
+     * 
+     * @throws FullColumnException If the provided column is full
      *
      * @return True if play was a game-winning move
      */
-    public boolean play(Piece type, int column) {
+    public boolean play(Piece type, int column) throws FullColumnException {
+        boolean full = true;
         for (int i = this.grid.length - 1; i >= 0; i--) {
             if (this.grid[i][column].getData().equals(Piece.NULL)) {
+                full = false;
                 this.grid[i][column].setData(type);
                 System.out.println("Player drops an " + type.toString() + " piece into column: " + column);
                 for (Direction d : Direction.values()) {
@@ -90,6 +96,10 @@ public class Board {
                 }
                 break;
             }
+        }
+        if (full) {
+            this.fullCols.add(column);
+            throw new FullColumnException();
         }
         return false;
     }
@@ -152,5 +162,17 @@ public class Board {
         } else {
             return "on a diagonal";
         }
+    }
+    
+    /**
+     * Gets a list of the full columns on the board
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return List of full columns
+     */
+    public List<Integer> getFullColumns() {
+        return this.fullCols;
     }
 }
