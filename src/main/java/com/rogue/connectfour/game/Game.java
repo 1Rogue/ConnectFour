@@ -75,7 +75,7 @@ public class Game {
                 }
                 boolean win;
                 try {
-                    if (i < 0 || i > this.project.getBoard().maxWidth) {
+                    if (i < 0 || i >= this.project.getBoard().maxWidth) {
                         throw new FullColumnException();
                     }
                     win = this.project.getBoard().play(current.getIdent(), i);
