@@ -54,6 +54,11 @@ public class Game {
             PlayerManager pm = this.project.getPlayerManager();
             Player current = pm.getPlayer();
             System.out.println(current.getType() + " player " + current.getIdent().toString() + " moving...");
+            int i = current.nextMove();
+            if (i == -1) {
+                System.out.println(current.getIdent().toString() + " quits the game");
+                System.exit(0);
+            }
             if (this.project.getBoard().play(current.getIdent(), current.nextMove())) {
                 this.printBoard(this.project.getBoard());
                 return current.getIdent().toString().toCharArray()[0];

@@ -17,6 +17,8 @@
 package com.rogue.connectfour.board;
 
 import com.rogue.connectfour.ConnectFour;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -29,6 +31,10 @@ public class Board {
     private Node<Piece>[][] grid;
     public final int maxHeight;
     public final int maxWidth;
+    //Winning variables, used on win only.
+    private Direction winningDir = Direction.TOP;
+    private int winningRow = 0;
+    private int winningCol = 0;
 
     /**
      * Constructor for Board. Initializes the grid and then sets the neighbors
@@ -75,6 +81,9 @@ public class Board {
                 this.grid[i][column].setData(type);
                 for (Direction d : Direction.values()) {
                     if (this.grid[i][column].search(d) >= 4) {
+                        this.winningDir = d;
+                        this.winningCol = column;
+                        this.winningRow = i;
                         return true;
                     }
                 }
@@ -94,5 +103,53 @@ public class Board {
      */
     public synchronized Node<Piece>[][] getGrid() {
         return this.grid;
+    }
+
+    /**
+     * Gets a list of open nodes on the board based on type
+     *
+     * @since 1.0.0
+     * @version 1.0.0
+     *
+     * @deprecated Needs to be more efficient
+     * 
+     * @param type The {@link Piece} type to look for
+     *
+     * @return List of open nodes on the board
+     */
+    public List<Node<Piece>> getOpenNodes(Piece type) {
+        List<Node<Piece>> nodes = new ArrayList();
+        for (int i = 0; i < grid.length; i++) {
+            for (int w = 0; w < grid[i].length; w++) {
+                if (this.grid[i][w].getData().equals(type)) {
+                    dirLoop:
+                    for (Direction d : Direction.values()) {
+                        if (this.grid[i][w].getNeighbor(d).getData().equals(Piece.NULL)) {
+                            nodes.add(this.grid[i][w]);
+                            break dirLoop;
+                        }
+                    }
+                }
+            }
+        }
+        return nodes;
+    }
+    
+    /**
+     * Returns the string format for the winning move.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The winning move in string form
+     */
+    public String getWinningMove() {
+        if (this.winningDir.equals(Direction.TOP) || this.winningDir.equals(Direction.BOTTOM)) {
+            return "in column " + this.winningCol;
+        } else if (this.winningDir.equals(Direction.LEFT) || this.winningDir.equals(Direction.RIGHT)) {
+            return "in row " + this.winningRow;
+        } else {
+            return "on a diagonal";
+        }
     }
 }

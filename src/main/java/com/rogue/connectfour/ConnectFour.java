@@ -52,7 +52,12 @@ public class ConnectFour {
         this.board = new Board(this, rows, columns);
         this.manager = new PlayerManager(this, xType, oType);
         this.game = new Game(this, rows * columns);
-        System.out.println("Winner: " + this.game.start());
+        char c = this.game.start();
+        if (c == ' ') {
+            System.out.println("Its a tie, no one wins");
+        } else {
+            System.out.println(c + " won " + this.board.getWinningMove());
+        }
     }
     
     /**
