@@ -23,10 +23,10 @@ import com.rogue.connectfour.game.Game;
 import com.rogue.connectfour.player.PlayerManager;
 
 /**
- * Main class for game
+ * Main class for the project
  *
  * @since 1.0.0
- * @author 1Rogue
+ * @author Spencer Alderman
  * @version 1.0.0
  */
 public class ConnectFour {

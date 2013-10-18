@@ -5,8 +5,11 @@
 package com.rogue.connectfour.board;
 
 /**
- *
- * @author Rogue
+ * {@link Direction} enum, used for spacial reasoning in a grid
+ * 
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public enum Direction {
     
@@ -93,7 +96,7 @@ public enum Direction {
     
     private final int dir;
     /**
-     * Constructs a new enum object based on int value of the enum direction.
+     * Constructs a new enum object based on int value of the enum {@link Direction}
      * 
      * @since 1.0.0
      * @version 1.0.0
@@ -144,12 +147,12 @@ public enum Direction {
     }
     
     /**
-     * Checks if two directions are equal
+     * Checks if two {@link Direction} objects are equal
      * 
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param dir The direction to check
+     * @param dir The {@link Direction} to check
      * @return True if equal, false otherwise
      */
     public boolean equals(Direction dir) {

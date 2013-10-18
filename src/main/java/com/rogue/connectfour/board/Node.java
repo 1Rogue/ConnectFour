@@ -20,9 +20,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * {@link Node} class for storing game {@link Piece} objects
  *
- * @since @author 1Rogue
- * @version
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public class Node<E> {
 
@@ -30,7 +32,7 @@ public class Node<E> {
     private final Map<Direction, Node<E>> neighbors;
 
     /**
-     * Constructor for Node. Sets the data and initializes the neighbors map.
+     * Constructor for {@link Node}. Sets the data and initializes the neighbors map.
      * 
      * @since 1.0.0
      * @version 1.0.0
@@ -43,14 +45,14 @@ public class Node<E> {
     }
     
     /**
-     * Sets the neighbors of the piece when given the provided board
+     * Sets the neighbors of the {@link Piece} when given the provided board
      * 
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param board The board instance
-     * @param curRow The current row of the piece
-     * @param curCol The current column of the piece
+     * @param board The {@link Board} instance
+     * @param curRow The current row of the {@link Piece}
+     * @param curCol The current column of the {@link Piece}
      */
     public void setNeighbors(Board board, int curRow, int curCol) {
         final Node<E>[][] grid;
@@ -90,7 +92,7 @@ public class Node<E> {
     }
 
     /**
-     * Returns the map of the neighbors for this node
+     * Returns the {@link ConcurrentHashMap} of the neighbors for this node
      * 
      * @since 1.0.0
      * @version 1.0.0
@@ -102,12 +104,12 @@ public class Node<E> {
     }
     
     /**
-     * Gets a particular neighbor from a direction
+     * Gets a particular neighbor from a {@link Direction}
      * 
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param d The direction to look in
+     * @param d The {@link Direction} to look in
      * @return The neighbor in this location
      */
     public synchronized Node<E> getNeighbor(Direction d) {
@@ -115,13 +117,13 @@ public class Node<E> {
     }
 
     /**
-     * Sets a neighbor in a relevant direction
+     * Sets a neighbor in a relevant {@link Direction}
      * 
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param direction The direction to set
-     * @param neighbor The neighbor node to set
+     * @param direction The {@link Direction} to set
+     * @param neighbor The neighbor {@link Node} to set
      */
     public void setNeighbor(Direction direction, Node<E> neighbor) {
         this.neighbors.put(direction, neighbor);
@@ -133,49 +135,49 @@ public class Node<E> {
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param direction The direction to check
-     * @return True if a peice exists, false otherwise
+     * @param direction The {@link Direction} to check
+     * @return True if a {@link Piece} exists, false otherwise
      */
     public boolean hasNeighbor(Direction direction) {
         return this.neighbors.get(direction).getData() != Piece.NULL;
     }
 
     /**
-     * Returns whether or not there is a similar piece in the relevant direction.
+     * Returns whether or not there is a similar piece in the relevant {@link Direction}
      * 
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param direction The direction to check
-     * @param node The node containing the data to check
-     * @return True if peice exists and is the same, false otherwise
+     * @param direction The {@link Direction} to check
+     * @param node The {@link Node} containing the data to check
+     * @return True if the {@link Piece} exists and is the same, false otherwise
      */
     public boolean hasNeighbor(Direction direction, Node<E> node) {
-        return node.data.equals(this.neighbors.get(direction).data);
+        return node.equals(this.neighbors.get(direction));
     }
 
     /**
-     * Returns true if the two nodes are equal
+     * Returns true if the two {@link Node} classes are equal
      * 
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param node
-     * @return 
+     * @param node The {@link Node} to compare
+     * @return True if equal, false otherwise
      */
     public boolean equals(Node<E> node) {
         return this.data == node.data;
     }
 
     /**
-     * Searches in a direction, and returns how many in a row there are of a
-     * piece.
+     * Searches in a {@link Direction}, and returns how many in a row there are
+     * of a {@link Piece}
      * 
      * @since 1.0.0
      * @version 1.0.0
      * 
-     * @param d The direction to search in
-     * @return 
+     * @param d The {@link Direction} to search in
+     * @return The number of matching {@link Piece} objects in a given {@link Direction}
      */
     public int search(Direction d) {
         Node<E> neigh = this.neighbors.get(d);

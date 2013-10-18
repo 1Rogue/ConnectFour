@@ -19,16 +19,42 @@ package com.rogue.connectfour.player;
 import com.rogue.connectfour.board.Piece;
 
 /**
+ * Player interface for {@link ConnectFour}
  *
- * @since 
- * @author 1Rogue
- * @version 
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public interface Player {
     
+    /**
+     * Gets the next move relative to the {@link Player} at hand
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return int representing the column to play the piece in
+     */
     public int nextMove();
+    
+    /**
+     * Returns the type of the {@link Player} in string form
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The string form of the {@link Player}
+     */
     public String getType();
-    public void setIdent(Piece ident);
+    
+    /**
+     * Gets the {@link Piece} in use by the {@link Player}
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Piece} in use by the {@link Player}
+     */
     public Piece getIdent();
 
 }

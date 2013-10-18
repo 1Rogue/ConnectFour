@@ -20,7 +20,7 @@ package com.rogue.connectfour;
  * Initial Starting class for ConnectFour instance
  *
  * @since 1.0.0
- * @author 1Rogue
+ * @author Spencer Alderman
  * @version 1.0.0
  */
 public class Connect4 {

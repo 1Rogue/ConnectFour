@@ -21,10 +21,11 @@ import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.player.type.*;
 
 /**
+ * Player Manager for {@link ConnectFour}. Holds the player instances.
  *
- * @since 
- * @author 1Rogue
- * @version 
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public class PlayerManager {
     
@@ -33,25 +34,54 @@ public class PlayerManager {
     private final Player one;
     private final Player two;
     
+    /**
+     * PlayerManager Constructor. Creates two new players for the game.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param project The main project instance
+     * @param oneType The type to use for player one
+     * @param twoType The type to use for player two
+     */
     public PlayerManager(ConnectFour project, String oneType, String twoType) {
         this.project = project;
-        this.one = this.getPlayerFromType(oneType);
-        this.one.setIdent(Piece.X);
-        this.two = this.getPlayerFromType(twoType);
-        this.two.setIdent(Piece.O);
+        this.one = this.getPlayerFromType(oneType, Piece.X);
+        this.two = this.getPlayerFromType(twoType, Piece.O);
     }
     
-    private Player getPlayerFromType(String type) {
+    /**
+     * Gets a player based on the string type
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param type The type of player to get
+     * @param piece The piece for the player to use
+     * @return The new player object
+     */
+    private Player getPlayerFromType(String type, Piece piece) {
         if (type.equalsIgnoreCase("human")) {
-            return new Human(this.project);
+            return new Human(this.project, piece);
         } else if (type.equalsIgnoreCase("random")) {
-            return new Random(this.project);
+            return new Random(this.project, piece);
         } else if (type.equalsIgnoreCase("bad")) {
-            return new Bad(this.project);
+            return new Bad(this.project, piece);
         }
-        return new Good(this.project);
+        return new Good(this.project, piece);
     }
     
+    /**
+     * Gets the player based on the current turn within the game. This method is
+     * based internally on the number of times it has been called, so if it is
+     * called other than by the main game method it will break the game. (It
+     * will not finish)
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The player for the appropriate turn
+     */
     public Player getPlayer() {
         this.secondTurn = !this.secondTurn;
         if (!this.secondTurn) {

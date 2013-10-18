@@ -21,10 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The {@link Board} class used for managing the {@link Piece} objects of the
+ * game and general information
  * 
- * @since
- * @author 1Rogue
- * @version
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public class Board {
 
@@ -39,13 +41,13 @@ public class Board {
     private int winningCol = 0;
 
     /**
-     * Constructor for Board. Initializes the grid and then sets the neighbors
-     * for the nodes
+     * Constructor for {@link Board}. Initializes the grid and then sets the
+     * neighbors for the {@link Node} objects
      *
      * @since 1.0.0
      * @version 1.0.0
      *
-     * @param project The main project instance
+     * @param project The {@link ConnectFour} instance
      * @param rows The number of rows
      * @param columns The number of columns
      */
@@ -67,7 +69,7 @@ public class Board {
     }
 
     /**
-     * Plays a piece on the board
+     * Plays a piece on the {@link Board}
      *
      * @since 1.0.0
      * @version 1.0.0
@@ -117,7 +119,7 @@ public class Board {
     }
 
     /**
-     * Gets a list of open nodes on the board based on type
+     * Gets a list of open {@link Node} objects on the board based on type
      *
      * @since 1.0.0
      * @version 1.0.0

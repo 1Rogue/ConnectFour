@@ -21,36 +21,67 @@ import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.player.Player;
 
 /**
+ * Random AI for {@link ConnectFour}. Moves are selected randomly
  *
- * @since 
- * @author 1Rogue
- * @version 
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public class Random implements Player {
     
     private final ConnectFour project;
-    private Piece ident = Piece.NULL;
+    private final Piece ident;
     
-    public Random(ConnectFour project) {
+    /**
+     * Constructor for {@link Random}. Sets the {@link ConnectFour} instance and 
+     * the {@link Piece} to use
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param project The {@link ConnectFour} instance
+     * @param ident The {@link Piece} for this {@link Player} to use.
+     */
+    public Random(ConnectFour project, Piece ident) {
         this.project = project;
+        this.ident = ident;
     }
 
+    /**
+     * Selects a random column, and plays it.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The next move to play
+     */
     @Override
     public int nextMove() {
         java.util.Random rand = new java.util.Random();
         return rand.nextInt(this.project.getBoard().maxWidth);
     }
     
+    /**
+     * Returns "random", or the {@link Player} type.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Player} type
+     */
     @Override
     public String getType() {
         return "random";
     }
     
-    @Override
-    public void setIdent(Piece ident) {
-        this.ident = ident;
-    }
-    
+    /**
+     * Returns the {@link Piece} in use by this {@link Player}
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Piece} in use
+     */
     @Override
     public Piece getIdent() {
         return this.ident;

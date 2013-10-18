@@ -22,20 +22,40 @@ import com.rogue.connectfour.player.Player;
 import java.util.Scanner;
 
 /**
- *
- * @since 
- * @author 1Rogue
- * @version 
+ * Human AI for {@link ConnectFour}. Moves are determined by a human player.
+ * 
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public class Human implements Player {
     
     private final ConnectFour project;
-    private Piece ident = Piece.NULL;
+    private final Piece ident;
     
-    public Human(ConnectFour project) {
+    /**
+     * Constructor for {@link Human}. Sets the {@link ConnectFour} instance and 
+     * the {@link Piece} to use
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param project
+     * @param ident The {@link Piece} for this {@link Player} to use.
+     */
+    public Human(ConnectFour project, Piece ident) {
         this.project = project;
+        this.ident = ident;
     }
 
+    /**
+     * Asks for input for a column, and then plays it
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The next move to play
+     */
     @Override
     public int nextMove() {
         Scanner scan = new Scanner(System.in);
@@ -43,16 +63,27 @@ public class Human implements Player {
         return scan.nextInt();
     }
     
+    /**
+     * Returns "human", or the {@link Player} type.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Player} type
+     */
     @Override
     public String getType() {
         return "human";
     }
     
-    @Override
-    public void setIdent(Piece ident) {
-        this.ident = ident;
-    }
-    
+    /**
+     * Returns the {@link Piece} in use by this {@link Player}
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Piece} in use
+     */
     @Override
     public Piece getIdent() {
         return this.ident;

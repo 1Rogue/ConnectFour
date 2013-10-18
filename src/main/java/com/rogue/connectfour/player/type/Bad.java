@@ -21,21 +21,41 @@ import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.player.Player;
 
 /**
+ * AI used for {@link ConnectFour}. Moves are selected as far left as possible
  *
- * @since 
- * @author 1Rogue
- * @version 
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public class Bad implements Player {
     
     private final ConnectFour project;
-    private Piece ident = Piece.NULL;
+    private final Piece ident;
     private int counter = 0;
     
-    public Bad(ConnectFour project) {
+    /**
+     * Constructor for {@link Bad}. Sets the {@link ConnectFour} instance and 
+     * the {@link Piece} to use
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param project
+     * @param ident The {@link Piece} for this {@link Player} to use.
+     */
+    public Bad(ConnectFour project, Piece ident) {
         this.project = project;
+        this.ident = ident;
     }
 
+    /**
+     * Moves in the leftmost column possible
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The next move to play
+     */
     @Override
     public int nextMove() {
         if (this.project.getBoard().getFullColumns().contains(this.counter)) {
@@ -44,16 +64,27 @@ public class Bad implements Player {
         return this.counter;
     }
     
+    /**
+     * Returns "bad", or the {@link Player} type.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Player} type
+     */
     @Override
     public String getType() {
         return "bad";
     }
     
-    @Override
-    public void setIdent(Piece ident) {
-        this.ident = ident;
-    }
-    
+    /**
+     * Returns the {@link Piece} in use by this {@link Player}
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Piece} in use
+     */
     @Override
     public Piece getIdent() {
         return this.ident;

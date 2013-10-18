@@ -17,13 +17,20 @@
 package com.rogue.connectfour.board;
 
 /**
+ * Exception thrown when a {@link Piece} is attempted to be inserted into a full column
  *
  * @since 1.0.0
- * @author 1Rogue
+ * @author Spencer Alderman
  * @version 1.0.0
  */
 public class FullColumnException extends Exception {
     
+    /**
+     * Passes the {@link Exception} up to a general exception
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     */
     public FullColumnException() {
         super();
     }

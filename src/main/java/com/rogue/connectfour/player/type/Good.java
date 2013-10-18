@@ -17,39 +17,72 @@
 package com.rogue.connectfour.player.type;
 
 import com.rogue.connectfour.ConnectFour;
+import com.rogue.connectfour.board.Board;
 import com.rogue.connectfour.board.Piece;
 import com.rogue.connectfour.player.Player;
 
 /**
+ * Good AI for {@link ConnectFour}.
  *
- * @since 
- * @author 1Rogue
- * @version 
+ * @since 1.0.0
+ * @author Spencer Alderman
+ * @version 1.0.0
  */
 public class Good implements Player {
     
     private final ConnectFour project;
-    private Piece ident = Piece.NULL;
+    private final Piece ident;
     
-    public Good(ConnectFour project) {
+    /**
+     * Constructor for {@link Good}. Sets the {@link ConnectFour} instance and 
+     * the {@link Piece} to use
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param project
+     * @param ident The {@link Piece} for this {@link Player} to use.
+     */
+    public Good(ConnectFour project, Piece ident) {
         this.project = project;
+        this.ident = ident;
     }
 
+    /**
+     * Whatever the hell this is going to do
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The next move to play
+     */
     @Override
     public int nextMove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Board board = this.project.getBoard();
+        return 0;
     }
     
+    /**
+     * Returns "good", or the {@link Player} type.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Player} type
+     */
     @Override
     public String getType() {
         return "good";
     }
     
-    @Override
-    public void setIdent(Piece ident) {
-        this.ident = ident;
-    }
-    
+    /**
+     * Returns the {@link Piece} in use by this {@link Player}
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The {@link Piece} in use
+     */
     @Override
     public Piece getIdent() {
         return this.ident;
