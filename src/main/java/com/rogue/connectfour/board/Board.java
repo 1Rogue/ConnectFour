@@ -27,43 +27,61 @@ import com.rogue.connectfour.ConnectFour;
 public class Board {
     
     private ConnectFour project;
-    private Node<Peice>[][] grid;
+    private Node<Piece>[][] grid;
     
+    /**
+     * Constructor for Board. Initializes the grid and then sets the neighbors
+     * for the nodes
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param project The main project instance
+     * @param rows The number of rows
+     * @param columns The number of columns
+     */
     public Board(ConnectFour project, int rows, int columns) {
         this.project = project;
         this.grid = new Node[rows][columns];
         for (int i = 0; i < grid.length; i++) {
             for (int w = 0; w < grid[i].length; w++) {
-                grid[i][w] = new Node<Peice>(Peice.NULL);
+                grid[i][w] = new Node<Piece>(Piece.NULL);
             }
         }
         for (int i = 0; i < grid.length; i++) {
             for (int w = 0; w < grid[i].length; w++) {
-                grid[i][w].setNeighbors(this);
+                grid[i][w].setNeighbors(this, i, w);
             }
         }
     }
     
     /**
-     * Plays a peice on the board
+     * Plays a piece on the board
      * 
-     * @param type The type of peice to play
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @param type The type of piece to play
      * @param column The column to play in1
      */
-    public void play(Peice type, int column) {
-        
+    public void play(Piece type, int column) {
+        for (int i = grid.length - 1; i >= 0; i--) {
+            if (!grid[i][column].getData().equals(Piece.NULL)) {
+                continue;
+            }
+            grid[i][column].setData(type);
+        }
     }
     
     /**
-     * Converts an array-based y to space-oriented y
-     * @param rawY The y argument
-     * @return The y relevant to the array
+     * Returns the grid. Should be used in a synchronized block for safety.
+     * 
+     * @since 1.0.0
+     * @version 1.0.0
+     * 
+     * @return The board grid
      */
-    private int toY(int rawY) {
-        return 0;
-    }
-    
-    public Node<Peice>[][] getGrid() {
+    public synchronized Node<Piece>[][] getGrid() {
         return this.grid;
     }
 
