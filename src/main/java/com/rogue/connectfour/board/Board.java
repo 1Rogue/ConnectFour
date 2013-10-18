@@ -79,6 +79,7 @@ public class Board {
         for (int i = this.grid.length - 1; i >= 0; i--) {
             if (this.grid[i][column].getData().equals(Piece.NULL)) {
                 this.grid[i][column].setData(type);
+                System.out.println("Player drops an " + type.toString() + " piece into column: " + column);
                 for (Direction d : Direction.values()) {
                     if (this.grid[i][column].search(d) >= 4) {
                         this.winningDir = d;
